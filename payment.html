@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ご支援のお手続き | すた丼Pay-forwardクリスマス2025</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Oswald:wght@500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'uzu-blue': '#0a1f4d',
+                        'uzu-light': '#eef2ff',
+                        'xmas-red': '#c41e3a',
+                        'xmas-gold': '#d4af37',
+                    },
+                    fontFamily: {
+                        sans: ['"Noto Sans JP"', 'sans-serif'],
+                        oswald: ['"Oswald"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-sans text-gray-800 bg-gray-50 antialiased">
+
+    <!-- ヘッダー -->
+    <header class="fixed top-0 left-0 w-full bg-uzu-blue text-white shadow-md z-50 h-16 flex items-center">
+        <div class="max-w-5xl mx-auto w-full px-4 flex justify-between items-center">
+            <div class="font-bold text-sm md:text-lg tracking-tighter">
+                UZUSHIO<span class="font-normal ml-1 text-xs">Holdings</span> × UZU PH
+            </div>
+            <a href="index.html" class="text-sm hover:text-xmas-gold transition flex items-center gap-1">
+                <i class="fas fa-arrow-left"></i> トップへ戻る
+            </a>
+        </div>
+    </header>
+
+    <main class="pt-24 pb-16 px-4">
+        <div class="max-w-3xl mx-auto">
+            <div class="text-center mb-10">
+                <h1 class="text-2xl md:text-3xl font-bold text-uzu-blue mb-2">ご支援（Pay-forward）のお手続き</h1>
+                <p class="text-gray-600 text-sm">セブ島へ「すた丼」のプレゼントを贈ります</p>
+            </div>
+
+            <!-- STEP 1: 数量選択 -->
+            <section class="bg-white rounded-xl shadow-lg p-6 md:p-8 mb-8 border border-gray-100">
+                <h2 class="text-lg font-bold text-gray-800 mb-6 flex items-center">
+                    <span class="bg-uzu-blue text-white w-6 h-6 rounded-full flex items-center justify-center text-xs mr-3">1</span>
+                    支援する数を選ぶ
+                </h2>
+
+                <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                    <div class="flex-1">
+                        <p class="font-bold text-lg mb-1">Pay-forwardチケット</p>
+                        <p class="text-sm text-gray-500">伝説のすた丼 1杯分相当</p>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <button onclick="updateQuantity(-1)" class="w-10 h-10 rounded-full border border-gray-300 hover:bg-gray-100 text-xl font-bold text-gray-500">-</button>
+                        <div class="text-center">
+                            <input type="number" id="quantity" value="1" min="1" readonly class="w-16 text-center text-2xl font-bold border-none focus:ring-0">
+                            <span class="text-sm text-gray-500 block">枚</span>
+                        </div>
+                        <button onclick="updateQuantity(1)" class="w-10 h-10 rounded-full border border-uzu-blue bg-uzu-blue text-white hover:bg-blue-900 text-xl font-bold">+</button>
+                    </div>
+                </div>
+
+                <div class="mt-6 pt-6 border-t border-dashed border-gray-200 flex justify-between items-end">
+                    <span class="font-bold text-gray-600">合計金額</span>
+                    <span class="text-3xl font-bold text-xmas-red font-oswald">
+                        ¥<span id="total-price">500</span>
+                    </span>
+                </div>
+            </section>
+
+            <!-- STEP 2: 決済方法 -->
+            <section class="bg-white rounded-xl shadow-lg p-6 md:p-8 border border-gray-100">
+                <h2 class="text-lg font-bold text-gray-800 mb-6 flex items-center">
+                    <span class="bg-uzu-blue text-white w-6 h-6 rounded-full flex items-center justify-center text-xs mr-3">2</span>
+                    決済方法を選ぶ
+                </h2>
+
+                <!-- タブ切り替え -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-8">
+                    <button onclick="selectMethod('card')" id="btn-card" class="payment-btn active flex flex-col items-center justify-center p-4 rounded-lg border-2 border-uzu-blue bg-blue-50 text-uzu-blue transition">
+                        <i class="fas fa-credit-card text-2xl mb-2"></i>
+                        <span class="text-xs font-bold">カード決済</span>
+                    </button>
+                    <button onclick="selectMethod('btc')" id="btn-btc" class="payment-btn flex flex-col items-center justify-center p-4 rounded-lg border-2 border-gray-200 hover:border-gray-300 text-gray-500 transition">
+                        <i class="fab fa-bitcoin text-2xl mb-2 text-orange-500"></i>
+                        <span class="text-xs font-bold">Bitcoin</span>
+                    </button>
+                    <button onclick="selectMethod('eth')" id="btn-eth" class="payment-btn flex flex-col items-center justify-center p-4 rounded-lg border-2 border-gray-200 hover:border-gray-300 text-gray-500 transition">
+                        <i class="fab fa-ethereum text-2xl mb-2 text-indigo-500"></i>
+                        <span class="text-xs font-bold">Ethereum</span>
+                    </button>
+                    <button onclick="selectMethod('xrp')" id="btn-xrp" class="payment-btn flex flex-col items-center justify-center p-4 rounded-lg border-2 border-gray-200 hover:border-gray-300 text-gray-500 transition">
+                        <span class="text-2xl mb-2 font-bold text-blue-500 font-oswald">X</span>
+                        <span class="text-xs font-bold">Ripple</span>
+                    </button>
+                </div>
+
+                <!-- コンテンツエリア: カード決済 -->
+                <div id="content-card" class="payment-content">
+                    <div class="bg-blue-50 p-4 rounded-lg border border-blue-100 mb-6">
+                        <p class="text-sm text-uzu-blue font-bold">
+                            <i class="fas fa-info-circle mr-1"></i>
+                            決済は安全な外部サイト（Stripe）で行われます
+                        </p>
+                        <p class="text-xs text-gray-600 mt-1">
+                            「カードで支払う」ボタンを押すと、決済画面へ移動します。<br>
+                            移動先の画面で、再度数量を確認・変更することができます。
+                        </p>
+                    </div>
+                    
+                    <!-- 決済実行ボタン -->
+                    <button onclick="proceedToCardPayment()" class="w-full bg-xmas-red hover:bg-red-700 text-white font-bold py-4 rounded-lg shadow-lg transition transform hover:scale-[1.02]">
+                        <i class="fas fa-credit-card mr-2"></i>カードで支払う
+                    </button>
+                </div>
+
+                <!-- コンテンツエリア: 仮想通貨（共通） -->
+                <div id="content-crypto" class="payment-content hidden">
+                    <div class="bg-gray-50 p-6 rounded-lg border border-gray-200 text-center">
+                        <div id="crypto-icon" class="text-5xl mb-4"></div>
+                        <h3 id="crypto-name" class="text-xl font-bold mb-2"></h3>
+                        <p class="text-sm text-gray-600 mb-6">以下のQRコードまたはアドレスへ送金してください。</p>
+                        
+                        <!-- QR Placeholder -->
+                        <div class="bg-white w-48 h-48 mx-auto mb-6 border-4 border-gray-800 flex items-center justify-center relative">
+                            <i class="fas fa-qrcode text-6xl text-gray-300"></i>
+                            <span class="absolute bottom-2 text-xs text-gray-400">Address QR Code</span>
+                        </div>
+
+                        <div class="bg-white p-3 rounded border border-gray-300 flex items-center justify-between gap-2 text-left">
+                            <code id="crypto-address" class="text-xs md:text-sm break-all font-mono text-gray-600">--</code>
+                            <button onclick="copyAddress()" class="text-uzu-blue hover:text-blue-700 px-2 tooltip" data-tip="コピー">
+                                <i class="far fa-copy"></i>
+                            </button>
+                        </div>
+
+                        <p class="text-xs text-red-500 mt-4 text-left">
+                            ※ネットワーク（Chain）を必ずご確認ください。<br>
+                            ※送金手数料はご負担をお願いいたします。
+                        </p>
+                    </div>
+                    
+                    <p class="text-center text-sm text-gray-500 mt-6 mb-2">送金が完了しましたら、以下のボタンからお知らせください。</p>
+                    <button onclick="proceedToForm()" class="w-full bg-gray-800 hover:bg-black text-white font-bold py-4 rounded-lg shadow-lg transition">
+                        <i class="fas fa-paper-plane mr-2"></i>送金完了を通知する（フォームへ）
+                    </button>
+                </div>
+
+            </section>
+        </div>
+    </main>
+
+    <footer class="bg-uzu-blue text-white text-center py-6 text-xs">
+        <p>&copy; 2025 UZUSHIO Holdings / UZU PH Enterprises Inc.</p>
+        <div class="mt-2 flex justify-center gap-4">
+            <a href="tokusho.html" class="underline opacity-70 hover:opacity-100">特定商取引法に基づく表記</a>
+            <a href="privacy.html" class="underline opacity-70 hover:opacity-100">プライバシーポリシー</a>
+        </div>
+    </footer>
+
+    <script>
+        const unitPrice = 500;
+        let quantity = 1;
+
+        /* ============================================================
+           ★重要★ ここに実際のURLを設定してください
+           ============================================================ */
+        // 1. Stripe等の「支払いリンク」のURL
+        // 例: "https://buy.stripe.com/test_..."
+        const STRIPE_LINK = "https://buy.stripe.com/test_example123"; 
+
+        // 2. 仮想通貨送金後の報告用フォーム（Googleフォーム等）のURL
+        const FORM_LINK = "https://forms.google.com/example";
+
+        // 3. 仮想通貨のアドレス設定
+        const CRYPTO_INFO = {
+            btc: { 
+                name: 'Bitcoin (BTC)', 
+                address: 'bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh' // ここに本物のアドレスを入力
+            },
+            eth: { 
+                name: 'Ethereum (ETH)', 
+                address: '0x71C7656EC7ab88b098defB751B7401B5f6d8976F' // ここに本物のアドレスを入力
+            },
+            xrp: { 
+                name: 'Ripple (XRP)', 
+                address: 'rEb8TK3gBgk5auZkwc6sHnwrGVJH8DuaLh' // ここに本物のアドレスを入力
+            }
+        };
+        /* ============================================================ */
+
+        // 数量更新
+        function updateQuantity(change) {
+            const newQuantity = quantity + change;
+            if (newQuantity >= 1) {
+                quantity = newQuantity;
+                document.getElementById('quantity').value = quantity;
+                document.getElementById('total-price').innerText = (quantity * unitPrice).toLocaleString();
+            }
+        }
+
+        // 決済方法切り替え
+        function selectMethod(method) {
+            // ボタンのリセット
+            document.querySelectorAll('.payment-btn').forEach(btn => {
+                btn.classList.remove('border-uzu-blue', 'bg-blue-50', 'text-uzu-blue');
+                btn.classList.add('border-gray-200', 'text-gray-500');
+            });
+
+            // 選択ボタンをアクティブ化
+            const activeBtn = document.getElementById(`btn-${method}`);
+            activeBtn.classList.remove('border-gray-200', 'text-gray-500');
+            activeBtn.classList.add('border-uzu-blue', 'bg-blue-50', 'text-uzu-blue');
+
+            // 表示切り替え
+            if (method === 'card') {
+                document.getElementById('content-card').classList.remove('hidden');
+                document.getElementById('content-crypto').classList.add('hidden');
+            } else {
+                document.getElementById('content-card').classList.add('hidden');
+                document.getElementById('content-crypto').classList.remove('hidden');
+                setupCrypto(method);
+            }
+        }
+
+        // 仮想通貨表示セットアップ
+        function setupCrypto(type) {
+            const data = CRYPTO_INFO[type];
+            const iconEl = document.getElementById('crypto-icon');
+            const nameEl = document.getElementById('crypto-name');
+            const addrEl = document.getElementById('crypto-address');
+
+            // アイコン設定
+            if (type === 'btc') iconEl.innerHTML = '<i class="fab fa-bitcoin text-orange-500"></i>';
+            else if (type === 'eth') iconEl.innerHTML = '<i class="fab fa-ethereum text-indigo-500"></i>';
+            else if (type === 'xrp') iconEl.innerHTML = '<span class="font-oswald text-blue-500 font-bold">X</span>';
+
+            nameEl.innerText = data.name;
+            addrEl.innerText = data.address;
+        }
+
+        // アドレスコピー機能
+        function copyAddress() {
+            const address = document.getElementById('crypto-address').innerText;
+            navigator.clipboard.writeText(address).then(() => {
+                alert('アドレスをコピーしました');
+            });
+        }
+
+        // カード決済へ進む
+        function proceedToCardPayment() {
+            // Stripeなどのリンクへ遷移
+            window.location.href = STRIPE_LINK;
+        }
+
+        // フォームへ進む
+        function proceedToForm() {
+            // Googleフォームなどへ遷移
+            window.location.href = FORM_LINK;
+        }
+    </script>
+</body>
+</html>
