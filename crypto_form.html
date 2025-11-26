@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>お支払い・送金完了のご報告 | すた丼Pay-forwardクリスマス2025</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'uzu-blue': '#0a1f4d',
+                        'uzu-light': '#eef2ff',
+                        'xmas-red': '#c41e3a',
+                    },
+                    fontFamily: {
+                        sans: ['"Noto Sans JP"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-sans text-gray-800 bg-gray-50 antialiased">
+
+    <!-- ヘッダー -->
+    <header class="fixed top-0 left-0 w-full bg-uzu-blue text-white shadow-md z-50 h-16 flex items-center">
+        <div class="max-w-5xl mx-auto w-full px-4 flex justify-between items-center">
+            <div class="font-bold text-sm md:text-lg tracking-tighter">
+                UZUSHIO<span class="font-normal ml-1 text-xs">Holdings</span> × UZU PH
+            </div>
+            <div class="flex items-center gap-3">
+                <!-- 言語切り替えボタン -->
+                <button onclick="toggleLanguage()" class="flex items-center gap-1 text-white hover:text-gray-300 transition text-xs md:text-sm border border-white/30 px-2 py-1 rounded-full bg-white/10 backdrop-blur-sm">
+                    <i class="fas fa-globe"></i>
+                    <span id="lang-label">English</span>
+                </button>
+                <a href="payment.html" class="text-sm hover:text-gray-300 transition flex items-center gap-1">
+                    <i class="fas fa-arrow-left"></i> <span data-i18n="back">戻る</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="pt-24 pb-16 px-4">
+        <div class="max-w-2xl mx-auto bg-white rounded-xl shadow-lg p-8 border border-gray-100">
+            <div class="text-center mb-8">
+                <i class="fas fa-check-circle text-4xl text-green-500 mb-4"></i>
+                <h1 class="text-2xl font-bold text-uzu-blue" data-i18n="form_title">お支払い完了のご報告</h1>
+                <p class="text-sm text-gray-600 mt-2" data-i18n="form_desc">銀行振込または仮想通貨送金が完了しましたら、照合のため以下の情報をお知らせください。</p>
+            </div>
+
+            <!-- 
+                ★重要: Formspreeの設定★
+                action="https://formspree.io/f/YOUR_FORM_ID_HERE"
+                の部分をご自身のURLに書き換えてください
+            -->
+            <form action="https://formspree.io/f/YOUR_FORM_ID_HERE" method="POST" class="space-y-6">
+                
+                <div>
+                    <label class="block text-sm font-bold text-gray-700 mb-1" data-i18n="label_name">お名前 <span class="text-red-500">*</span></label>
+                    <input type="text" name="name" required placeholder="山田 太郎" data-placeholder-ja="山田 太郎" data-placeholder-en="Taro Yamada" class="w-full p-3 border border-gray-300 rounded focus:ring-2 focus:ring-uzu-blue outline-none">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-bold text-gray-700 mb-1" data-i18n="label_email">メールアドレス <span class="text-red-500">*</span></label>
+                    <input type="email" name="email" required placeholder="info@example.com" class="w-full p-3 border border-gray-300 rounded focus:ring-2 focus:ring-uzu-blue outline-none">
+                </div>
+
+                <div>
+                    <label class="block text-sm font-bold text-gray-700 mb-1" data-i18n="label_phone">電話番号 <span class="text-red-500">*</span></label>
+                    <input type="tel" name="phone" required placeholder="090-1234-5678" class="w-full p-3 border border-gray-300 rounded focus:ring-2 focus:ring-uzu-blue outline-none">
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 mb-1" data-i18n="label_currency">決済方法 / 通貨 <span class="text-red-500">*</span></label>
+                        <select name="currency" required class="w-full p-3 border border-gray-300 rounded focus:ring-2 focus:ring-uzu-blue outline-none">
+                            <option value="" data-i18n="select_default">選択してください</option>
+                            <option value="Bank Transfer (JPY)" data-i18n="opt_bank">銀行振込 (日本円)</option>
+                            <option value="Bitcoin (BTC)">Bitcoin (BTC)</option>
+                            <option value="Ethereum (ETH)">Ethereum (ETH)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold text-gray-700 mb-1" data-i18n="label_amount">振込・送金金額/数量 <span class="text-red-500">*</span></label>
+                        <input type="text" name="amount" required placeholder="例: 10000円 / 0.05 BTC" data-placeholder-ja="例: 10000円 / 0.05 BTC" data-placeholder-en="e.g. 10000 JPY / 0.05 BTC" class="w-full p-3 border border-gray-300 rounded focus:ring-2 focus:ring-uzu-blue outline-none">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-bold text-gray-700 mb-1" data-i18n="label_txid">振込名義 / TXID (ハッシュ) <span class="text-red-500">*</span></label>
+                    <input type="text" name="txid" required placeholder="振込名義人カナ または TXID" data-placeholder-ja="振込名義人カナ または TXID" data-placeholder-en="Payer Name or TXID" class="w-full p-3 border border-gray-300 rounded focus:ring-2 focus:ring-uzu-blue outline-none font-mono text-sm">
+                    <p class="text-xs text-gray-500 mt-1" data-i18n="txid_note">※銀行振込の場合は「振込名義人」、仮想通貨の場合は「トランザクションID」をご入力ください。</p>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-bold text-gray-700 mb-1" data-i18n="label_message">メッセージ（任意）</label>
+                    <textarea name="message" rows="3" placeholder="応援メッセージなどあればご記入ください" data-placeholder-ja="応援メッセージなどあればご記入ください" data-placeholder-en="Please write any cheering messages" class="w-full p-3 border border-gray-300 rounded focus:ring-2 focus:ring-uzu-blue outline-none"></textarea>
+                </div>
+
+                <button type="submit" class="w-full bg-uzu-blue hover:bg-blue-900 text-white font-bold py-4 rounded-lg shadow-lg transition transform hover:scale-[1.01]">
+                    <span data-i18n="btn_submit">報告を送信する</span>
+                </button>
+
+            </form>
+        </div>
+    </main>
+
+    <footer class="bg-uzu-blue text-white text-center py-6 text-xs">
+        <p>&copy; 2025 UZUSHIO Holdings / UZU PH Enterprises Inc.</p>
+    </footer>
+
+    <script>
+        const translations = {
+            ja: {
+                back: "戻る",
+                form_title: "お支払い完了のご報告",
+                form_desc: "銀行振込または仮想通貨送金が完了しましたら、照合のため以下の情報をお知らせください。",
+                label_name: "お名前 <span class=\"text-red-500\">*</span>",
+                label_email: "メールアドレス <span class=\"text-red-500\">*</span>",
+                label_phone: "電話番号 <span class=\"text-red-500\">*</span>",
+                label_currency: "決済方法 / 通貨 <span class=\"text-red-500\">*</span>",
+                select_default: "選択してください",
+                opt_bank: "銀行振込 (日本円)",
+                label_amount: "振込・送金金額/数量 <span class=\"text-red-500\">*</span>",
+                label_txid: "振込名義 / TXID (ハッシュ) <span class=\"text-red-500\">*</span>",
+                txid_note: "※銀行振込の場合は「振込名義人」、仮想通貨の場合は「トランザクションID」をご入力ください。",
+                label_message: "メッセージ（任意）",
+                btn_submit: "報告を送信する"
+            },
+            en: {
+                back: "Back",
+                form_title: "Report Payment Completion",
+                form_desc: "Please provide the following information for verification after bank transfer or crypto remittance is complete.",
+                label_name: "Name <span class=\"text-red-500\">*</span>",
+                label_email: "Email <span class=\"text-red-500\">*</span>",
+                label_phone: "Phone Number <span class=\"text-red-500\">*</span>",
+                label_currency: "Payment Method / Currency <span class=\"text-red-500\">*</span>",
+                select_default: "Please select",
+                opt_bank: "Bank Transfer (JPY)",
+                label_amount: "Amount Sent <span class=\"text-red-500\">*</span>",
+                label_txid: "Payer Name / TXID (Hash) <span class=\"text-red-500\">*</span>",
+                txid_note: "*Enter 'Payer Name' for bank transfer, or 'Transaction ID' for crypto.",
+                label_message: "Message (Optional)",
+                btn_submit: "Send Report"
+            }
+        };
+
+        let currentLang = 'ja';
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'ja' ? 'en' : 'ja';
+            updateContent();
+            updateButtonLabel();
+        }
+
+        function updateButtonLabel() {
+            const label = document.getElementById('lang-label');
+            label.textContent = currentLang === 'ja' ? 'English' : '日本語';
+        }
+
+        function updateContent() {
+            // テキスト書き換え
+            const elements = document.querySelectorAll('[data-i18n]');
+            elements.forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (translations[currentLang][key]) {
+                    element.innerHTML = translations[currentLang][key];
+                }
+            });
+
+            // プレースホルダー書き換え
+            const inputs = document.querySelectorAll('[data-placeholder-ja]');
+            inputs.forEach(input => {
+                const text = currentLang === 'ja' 
+                    ? input.getAttribute('data-placeholder-ja') 
+                    : input.getAttribute('data-placeholder-en');
+                input.placeholder = text;
+            });
+        }
+    </script>
+</body>
+</html>
