@@ -114,7 +114,7 @@
 
     <script>
         // ▼▼▼ ここにFormspreeのIDを入力してください（例: xmayqkqz） ▼▼▼
-        const FORMSPREE_ID = "mldkgdpq"; 
+        const FORMSPREE_ID = "YOUR_FORM_ID_HERE"; 
         // ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲
 
         const form = document.getElementById("report-form");
@@ -126,7 +126,7 @@
             const data = new FormData(event.target);
 
             // ID未設定時のアラート
-            if (FORMSPREE_ID === "YOUR_FORM_ID_HERE") {
+            if (FORMSPREE_ID === "mldkgdpq") {
                 alert("エラー: Formspree IDが設定されていません。HTMLファイルを編集してください。");
                 return;
             }
