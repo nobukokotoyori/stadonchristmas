@@ -24,6 +24,8 @@
                         'xmas-red': '#c41e3a', /* クリスマスレッド */
                         'xmas-gold': '#d4af37', /* ゴールド */
                         'suta-bg': '#fff8f0',
+                        'doc-blue': '#0056b3',
+                        'doc-cyan': '#00a0e9',
                     },
                     fontFamily: {
                         sans: ['"Noto Sans JP"', 'sans-serif'],
@@ -91,7 +93,7 @@
             <!-- 右側エリア：言語切り替え & CTA -->
             <div class="flex items-center gap-3 md:gap-4">
                 <!-- 言語切り替えボタン -->
-                <button onclick="toggleLanguage()" class="flex items-center gap-1 text-white hover:text-xmas-gold transition text-sm md:text-base border border-white/30 px-3 py-1 rounded-full bg-white/10 backdrop-blur-sm">
+                <button onclick="toggleLanguage()" class="flex items-center gap-1 text-white hover:text-xmas-gold transition text-sm md:text-base border border-white/30 px-3 py-1 rounded-full bg-white/10 backdrop-blur-sm cursor-pointer z-50">
                     <i class="fas fa-globe"></i>
                     <span id="lang-label">English</span>
                 </button>
@@ -211,7 +213,7 @@
                              alt="SUTADONYA Container" 
                              class="w-full h-auto rounded-lg"
                              onerror="this.style.display='none';">
-                        <p class="text-center text-xs md:text-sm text-gray-500 mt-2 font-bold tracking-widest" data-i18n="story_img_cap">2026年1月本格稼働予定 SUTADONYAコンテナレストラン周辺写真</p>
+                        <p class="text-center text-xs md:text-sm text-gray-500 mt-2 font-bold tracking-widest" data-i18n="story_img_cap">SUTADONYAコンテナレストラン周辺写真</p>
                     </div>
                     
                     <div class="bg-white p-3 rounded-xl shadow-xl transform -rotate-1 hover:rotate-0 transition duration-300">
@@ -421,7 +423,7 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative mb-12">
                 <!-- PC用: 矢印 (SVG 線画・右向き) -->
                 <div class="hidden md:block absolute top-1/2 left-1/3 transform -translate-y-1/2 -translate-x-1/2 text-4xl text-xmas-gold z-0">
-                    <!-- 修正: 線画の飛行機 (右向き) -->
+                    <!-- 修正: 線画のジェット機 (右向き) -->
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-12 h-12 text-xmas-gold transform rotate-90">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
                     </svg>
@@ -443,7 +445,6 @@
 
                 <!-- スマホ用: 飛行機 (画像 589806005244920355.jpg) -->
                 <div class="md:hidden text-center -my-4 z-0 flex justify-center items-center">
-                    <!-- 下向きにするため rotate-180, 背景色と馴染むように mix-blend-multiply を適用 -->
                     <img src="589806005244920355.jpg" alt="Plane Icon" class="w-12 h-12 object-contain transform rotate-180 mix-blend-multiply">
                 </div>
 
@@ -506,7 +507,6 @@
                             Megaworld は、フィリピン証券取引所（PSE: MEG）に上場する国内最大級の不動産デベロッパーであり、これまでに国内外で800棟以上の住宅建物、150万㎡超のオフィススペース、50万㎡超の商業施設、5,000室以上のホテルを開発・運営してきた実績を持ちます。
                             総資産は約4,700億フィリピンペソ（約1兆2,000億円相当）にのぼり、強固な財務基盤と透明性の高い企業統治で知られています。
                         </p>
-                        <!-- 修正: 指定された文章を削除 -->
                         <p class="text-white font-normal py-4 border-y border-white/10 bg-white/5 mx-auto max-w-2xl mt-6" data-i18n="venue_desc_4">
                             その格式の高さから、<strong class="text-white border-b border-xmas-gold pb-0.5">2026年「ASEAN首脳会議」の会場</strong>にも選定された特別な場所です。
                         </p>
@@ -719,6 +719,86 @@
                 outline_dd_1: "2025年12月20日（土）＆ 12月21日（日）<br><span class=\"text-sm font-normal text-gray-600\">各日 15:00〜17:00</span>",
                 outline_dt_2: "場所",
                 outline_dt_2_val: "The Mactan New Town Boardwalk<br><span class=\"text-gray-500 text-xs font-sans\">(The Mactan Newtown, Lapu-Lapu City, Mactan Island, Cebu)</span>",
+                outline_dt_3: "Price",
+                outline_dd_3_1: "Pay It Forward 1 bowl worth 500 yen",
+                outline_dd_3_2: "*Covered by everyone's support",
+                outline_goal: "The goal is to deliver energizing meals to as many people as possible.",
+                outline_help: "To do that, the power of everyone in Japan is essential.",
+                close_title_1: "May this base of hope overflow with smiles.",
+                close_title_2: "We are waiting for your warm support.",
+                close_p: "If this SUTADONYA container restaurant starts full-scale operation in January next year, we can support their lives in a more sustainable way. This Christmas project is an important bridge to that future.<br><br>Put Japan's hot cheers on hot Sutadon.<br>Let's give unforgettable Christmas smiles to children and families in Cebu Island together.",
+                close_btn_main: "Agree with this feeling and give Sutadon for Christmas",
+                close_btn_sub: "(Available for purchase from 500 yen per ticket)",
+                footer_tokusho: "Notation based on the Specified Commercial Transactions Act",
+                footer_privacy: "Privacy Policy",
+            },
+            en: {
+                header_cta: "Send Energy Now",
+                fv_badge: "Japan-Philippines Joint Project | Special Christmas Event",
+                fv_title_1: "This Christmas,",
+                fv_title_2: "Send a ",
+                fv_title_3: "Warm Gift",
+                fv_title_4: " to Cebu.",
+                fv_subtitle: "Your 500 yen becomes 'Japanese Energy' that lights up the future.",
+                fv_desc: "To the people of Cebu, Philippines, facing difficulties.<br>A Pay It Forward project by UZUSHIO Holdings and UZU PH<br class=\"hidden md:block\">to deliver smiles with the legendary Sutadon.",
+                fv_cta: "Send Vitality to Cebu Now",
+                fv_cta_sub: "(From 500 yen / Credit Card Accepted)",
+                msg_title_1: "Message from Cebu:",
+                msg_title_2: "Now, a hearty meal becomes vitality for the future.",
+                msg_p1: "While Japan is filled with Christmas mood, many people in Cebu, Philippines, across the sea, are still living difficult lives due to the effects of earthquakes and floods that occurred this year.",
+                msg_p2: "However, they have never lost hope. For them, a nutritious and energizing meal is not just about filling their stomachs, but a great vitality to live for tomorrow.",
+                msg_p3: "This Christmas, why don't we send a hearty Sutadon meal along with our cheers from Japan?",
+                story_title_1: "To Deliver 'Hope for the Future'.",
+                story_title_2: "Collaborators from Japan and Philippines are moving now.",
+                story_img_cap: "SUTADONYA Container Restaurant Surroundings (Opening Jan 2026)",
+                story_img_cap_2: "Image Design",
+                story_p1: "To promote humanitarian aid by spreading Japanese values to the world, UZUSHIO Holdings first proceeded with the establishment of a local subsidiary 'UZU PH Enterprises Inc.' with our Filipino colleagues.",
+                story_p2: "As a representative of Japanese food culture, we have been preparing the 'SUTADONYA Container Restaurant' at The Mactan Newtown in Cebu so that we can deliver 'Legendary Sutadon' anywhere in the Philippines.",
+                story_p3: "Aiming for full-scale operation in January 2026, this SUTADONYA Container Restaurant was supposed to be a new base of hope for Cebu. However, during the preparation, we learned that the local people were in a difficult situation, and as we went out to support them in a small way, it became an opportunity to think about what we could do.",
+                story_quote: "\"We want to give Sutadon Christmas presents to children who felt anxious due to natural disasters and those who were affected.\"",
+                story_p4: "We decided to implement a special project this Christmas, ahead of the full-scale start in 2026. This is the first step for Japan and the Philippines to join hands and create future smiles.",
+                story_photo_caption: "Scenes of support activities on the ground",
+                vision_title_1: "Visible and Invisible",
+                vision_title_2: "Supporting Food, Clothing, and Shelter with Japanese Values.",
+                vision_subtitle: "~The Humanitarian Economy We Aim For~",
+                vision_p1: "We, UZUSHIO Holdings, seriously believe that 'Japanese values' contribute to world peace.",
+                vision_p2: "We fear that simply continuing modern capitalism will make it difficult to secure food, clothing, shelter, and happiness for billions of people around the world.",
+                vision_p3: "That is why we want to do what we can so that the capital created so far is used not only to generate capital but also <strong class=\"text-white font-bold border-b border-white/50\">'firmly used for human food, clothing, and shelter'</strong>.<br>We want to express this to the world using Japanese values.<br>If we do so, the world economy will also change.",
+                vision_p4: "Even if it is small, we want to be a hint for those who seek a lot of hope in this rapidly changing world.",
+                vision_p5: "Creating a sustainable cycle of hope through economic activities.<br>That is the 'Humanitarian Economy' we promote.",
+                vision_p6: "This project is an important first step toward that grand vision.",
+                vision_btn: "Visit UZUSHIO Holdings Official Site",
+                pdf_download: "View Document",
+                history_title: "Legendary Sutadon: Soul from Founding & Challenge to the World",
+                history_sub: "Est. 1971. Started from a father's wish: \"I want young people to eat delicious food and do their best.\"",
+                history_p1: "In 1971, in Kunitachi, Tokyo. A ramen shop owner created \"Sutadon\" with a passionate desire to \"let young guys eat cheap and delicious food to their heart's content.\" Pork stir-fried with secret garlic soy sauce has been loved for over half a century as a unique taste that fills you with vitality the moment you eat it.",
+                vision_section_title: "To be a Japanese Restaurant that Gives Hope to the World",
+                vision_content: "The corporate philosophy of Antoworks Co., Ltd. is 'To be the underlying strength of people all over Japan and even the world through food.'<br>The UZU Family believes that they will become a representative Japanese restaurant that gives energy to people through food and gives hope to the world, not just a mere eatery.",
+                why_box_title1: "Cebu's Traditional Culture 'Lechon'",
+                why_box_p1: "Cebu Island has a food culture of gathering around a 'Roasted Pig (Lechon)', indispensable for celebrations, which continues from the Spanish colonial era in the 16th century. For them, pork dishes are historically a symbol of special 'Celebration Days'.",
+                why_box_title2: "That's why it becomes the best present",
+                why_box_p2: "Eating a bowl full of meat to the fullest.<br>That is the best luxury that makes your heart dance, which local people can rarely taste in their daily lives. Your support will be an unforgettable Christmas 'Feast' for them.",
+                pay_title_1: "Your 500 yen becomes",
+                pay_title_2: "Someone's 'Best Christmas Present'.",
+                pay_step1_title: "[Japan]",
+                pay_step1_sub: "Buy ticket on smartphone",
+                pay_step1_desc: "Your 500 yen",
+                pay_step2_title: "[Cebu]",
+                pay_step2_sub: "Hot Sutadon is cooked",
+                pay_step2_desc: "Cooking at the event venue",
+                pay_step3_title: "[Locals]",
+                pay_step3_sub: "Receive with a smile",
+                pay_step3_desc: "The Best Present!",
+                pay_p1: "The mechanism is simple. When you purchase a 'Pay It Forward Ticket (500 yen)' on this site, that ticket turns into a warm cup of 'Sutadon' at the event venue in Cebu Island.",
+                pay_p2: "What you are giving is not just a meal ticket. It is the 'warm heart' itself that thinks of them from far away Japan.<br class=\"hidden md:block\">Why don't you become a Santa Claus in Cebu this Christmas?",
+                outline_title_1: "Japan-Philippines Joint Event",
+                outline_title_2: "Christmas Sutadon Pay It Forward Event Overview",
+                venue_desc_1: "A luxury township in Cebu where high-class residences and world-class hotels gather on a beautiful beachfront.<br class=\"hidden md:inline\">Because of its high prestige, it is a special place selected as the <strong class=\"text-white border-b border-xmas-gold pb-0.5\">venue for the 'ASEAN Summit' to be held in May 2026</strong>.",
+                venue_desc_2: "However, its real face is surprisingly open and friendly.<br>It is also a warm community where everyone can spend time with peace of mind, with the laughter of local families and children echoing on weekends.",
+                venue_desc_3: "In this place that the world pays attention to, this event will be held with the full cooperation of a powerful partner who has signed a Memorandum of Understanding (MOU) for the promotion of Humanitarian Economy.",
+                outline_dt_1: "Date",
+                outline_dd_1: "Dec 20 (Sat) & Dec 21 (Sun), 2025<br><span class=\"text-sm font-normal text-gray-600\">15:00 - 17:00 each day</span>",
+                outline_dt_2: "Location",
                 outline_dt_3: "Price",
                 outline_dd_3_1: "Pay It Forward 1 bowl worth 500 yen",
                 outline_dd_3_2: "*Covered by everyone's support",
